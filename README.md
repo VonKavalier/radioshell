@@ -1,4 +1,4 @@
-# radio-term
+# radioshell
 Little bash program that allows to keep a list of online radio and listen to them in the terminal 📻
 
 ## Installation
