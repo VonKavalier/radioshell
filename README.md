@@ -14,6 +14,8 @@ Just start the script and enjoy :)
 
 Otherwise, mpv will throw an error.
 
+**Little tip :** You don't have to write the complete name of the radio. It's made with a grep so you just need few letters actually :)
+
 ## Other
 
 ![](https://tilde.town/~von/assets/media/sFU6.png)
