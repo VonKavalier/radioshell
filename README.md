@@ -14,9 +14,11 @@ Just start the script and enjoy :)
 
 Otherwise, mpv will throw an error.
 
-## Screenshot
+## Other
 
 ![](https://tilde.town/~von/assets/media/sFU6.png)
+
+[My personal radio list](https://cloud.disroot.org/s/Ds8JbfrosxTnnje)
 
 ## TODO
 
