@@ -17,21 +17,29 @@ cmd_list() {
     echo "================================="
 }
 
-get_radio_url() {
+get_radio_url_from_name() {
     url=$(grep "$1" "$RADIOS_LIST" | sed 's/^.*: //')
     echo "$url"
 }
 
+get_radio_name() {
+    line=$1
+    echo "$line" | sed 's/ :.*$//'
+}
+
 cmd_play() {
+    radioname=$1
     echo "\n=================[\e[0;32mSTOP WITH 'q'\e[0m]================="
     echo ""
-    mpv $(get_radio_url $1)
+    mpv $(get_radio_url_from_name $radioname)
     echo ""
     echo ===============================================
 }
 
 cmd_random() {
-    echo "TODO"
+    randomline="$(cat $RADIOS_LIST | sort | sed '/#.*$/d' | shuf -n 1)"
+    randomradio=$(get_radio_name "$randomline")
+    cmd_play $randomradio
 }
 
 cmd_add() {
@@ -55,16 +63,16 @@ cmd_delete() {
 }
 
 cmd_help() {
-    echo "\n===================[\e[0;32mCOMMANDS\e[0m]==================="
+    echo "\n=====================[\e[0;32mCOMMANDS\e[0m]====================="
     echo ""
     echo "  \e[0;34mlist\e[0m...............Show radio names"
     echo "  \e[0;34mplay <radio_name>\e[0m..Play specified radio"
-    echo "  \e[0;34mrandom\e[0m.............Play random radio (Not done yet)"
+    echo "  \e[0;34mrandom\e[0m.............Play random radio from list"
     echo "  \e[0;34madd\e[0m................Add a radio to the list"
     echo "  \e[0;34mdelete\e[0m.............Delete a radio from the list"
     echo "  \e[0;34mquit\e[0m...............Quit program"
     echo ""
-    echo "================================================"
+    echo "==================================================="
 }
 
 display_title() {
