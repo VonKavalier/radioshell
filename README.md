@@ -22,8 +22,4 @@ Otherwise, mpv will throw an error.
 
 [My personal radio list](https://cloud.disroot.org/s/Ds8JbfrosxTnnje)
 
-## TODO
-
-- Play a random radio
-
 If you want to contribute any help will be appreciated :)
