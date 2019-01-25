@@ -27,19 +27,36 @@ get_radio_name() {
     echo "$line" | sed 's/ :.*$//'
 }
 
-cmd_play() {
-    radioname=$1
+test_grep_result() {
+    if [ "$(echo "$1" | wc -l)" -gt 1 ] || [ -z "$1" ]; then
+        return 0
+    fi
+    echo "ok"
+}
+
+call_mpv() {
     echo "\n=================[\e[0;32mSTOP WITH 'q'\e[0m]================="
     echo ""
-    mpv $(get_radio_url_from_name $radioname)
+    mpv $1
     echo ""
     echo ===============================================
 }
 
+cmd_play() {
+    radiourl="$(get_radio_url_from_name "$1")"
+    if [ -z $(echo "$(test_grep_result "$radiourl")") ]; then
+        echo "\n\e[0;31mThe radio name provided doesn't seem to be on the list.\e[0m"
+        echo "If you can't decide, try the \e[0;34mrandom\e[0m command."
+        echo "Or list them with the \e[0;34mlist\e[0m command."
+        return 0
+    fi
+    call_mpv $radiourl
+}
+
 cmd_random() {
     randomline="$(cat $RADIOS_LIST | sort | sed '/#.*$/d' | shuf -n 1)"
-    randomradio=$(get_radio_name "$randomline")
-    cmd_play $randomradio
+    randomradioname=$(get_radio_name "$randomline")
+    call_mpv $(get_radio_url_from_name $randomradioname)
 }
 
 cmd_add() {
@@ -59,6 +76,11 @@ cmd_delete() {
 
     echo ""
     read -p "Enter radio name to delete : " radioname
+    grep_result="$(grep "radioname" $RADIOS_LIST)"
+    if [ -z "$(test_grep_result "$grep_result")" ]; then
+        echo "\n\e[0;31mNo radio has been deleted. Please check the radio name you provided.\e[0m"
+        return 0
+    fi
     grep -v "$radioname" $RADIOS_LIST > /tmp/radiolist.tmp; mv /tmp/radiolist.tmp $RADIOS_LIST
 }
 
@@ -98,17 +120,17 @@ do
     echo ""
     read -p "Enter command > " cmd args
     case $cmd in
-        "")             continue;;   # skip empty input lines
-        help)           cmd_name=help;;
-        exit|quit)      cmd_name=exit;;
-        list)           cmd_name=list;;
-        play)           cmd_name=play;;
-        add)            cmd_name=add;;
-        delete)         cmd_name=delete;;
-        random)         cmd_name=random;;
-        *)              echo "\n\e[0;31mCommand doesn't exist. Try 'help'\e[0m" && continue;;
+        "")               continue;;   # skip empty input lines
+        h|help)           cmd_name=help;;
+        q|exit|quit)      cmd_name=exit;;
+        l|list)           cmd_name=list;;
+        p|play)           cmd_name=play;;
+        a|add)            cmd_name=add;;
+        d|delete)         cmd_name=delete;;
+        r|random)         cmd_name=random;;
+        *)                echo "\n\e[0;31mCommand doesn't exist. Try 'help'\e[0m" && continue;;
     esac
-    cmd_$cmd $args
+    cmd_$cmd_name $args
 done
 }
 
