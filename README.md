@@ -17,7 +17,7 @@ Otherwise, mpv will throw an error.
 ## Tips
 
 - You don't have to write the complete name of the radio when playing it. It's made with a grep so you just need few letters actually :)
-- Commands can be called with only the first letter. For example if you want the list, instead of typing `list`, you can only type`l`
+- Commands can be called with only the first letter. For example if you want the list, instead of typing `list`, you just can type `l`
 
 ## Other
 
