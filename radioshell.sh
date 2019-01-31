@@ -40,6 +40,7 @@ call_mpv() {
     mpv $1
     echo ""
     echo ===============================================
+    echo "$(display_home)"
 }
 
 cmd_play() {
@@ -51,6 +52,7 @@ cmd_play() {
         return 0
     fi
     call_mpv $radiourl
+
 }
 
 cmd_random() {
@@ -97,13 +99,14 @@ cmd_help() {
     echo "==================================================="
 }
 
-display_title() {
+display_home() {
     echo "    ____            ___            __         ____"
     echo "   / __ \____ _____/ (_)___  _____/ /_  ___  / / /"
     echo "  / /_/ / __ \`/ __  / / __ \/ ___/ __ \/ _ \/ / / "
     echo " / _, _/ /_/ / /_/ / / /_/ (__  ) / / /  __/ / /  "
     echo "/_/ |_|\__,_/\__,_/_/\____/____/_/ /_/\___/_/_/   "
     echo ""
+    echo "$(cmd_help)"
 }
 
 cmd_exit() {
@@ -111,9 +114,7 @@ cmd_exit() {
 }
 
 main() {
-clear && echo "$(display_title)"
-
-echo "$(cmd_help)"
+clear && echo "$(display_home)"
 
 while true;
 do
