@@ -10,7 +10,7 @@ Little bash program that allows to keep a list of online radio and listen to the
 
 Just start the script and enjoy :)
 
-**Warning** : The URLs must be direct stream links. `*.pls` allowed too.
+**Warning** : The URLs must be direct stream links. Playlist files like `*.pls` or `*.m3u` are allowed too.
 
 Otherwise, mpv will throw an error.
 
