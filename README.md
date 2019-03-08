@@ -21,7 +21,7 @@ Otherwise, mpv will throw an error.
 
 ## Other
 
-![](https://tilde.town/~von/assets/media/sFU6.png)
+![](https://tilde.town/~von/assets/media/zHzl.png)
 
 [My personal radio list](https://gist.github.com/VonKavalier/cd55dd6d66db9064864a5e2c9a5aa660)
 
