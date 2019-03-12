@@ -46,7 +46,7 @@ call_mpv() {
 cmd_play() {
     radiourl="$(get_radio_url_from_name "$1")"
     if [ -z $(echo "$(test_grep_result "$radiourl")") ]; then
-        echo "\n\e[0;31mThe radio name provided doesn't seem to be on the list.\e[0m"
+        echo "\n\e[0;31mSorry, I had trouble finding one radio with the name you provided.\e[0m"
         echo "If you can't decide, try the \e[0;34mrandom\e[0m command."
         echo "Or list them with the \e[0;34mlist\e[0m command."
         return 0
