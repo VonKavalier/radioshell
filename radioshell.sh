@@ -97,6 +97,7 @@ cmd_help() {
     echo "  \e[0;34mrandom\e[0m.............Play random radio from list"
     echo "  \e[0;34madd\e[0m................Add a radio to the list"
     echo "  \e[0;34mdelete\e[0m.............Delete a radio from the list"
+    echo "  \e[0;34mclear\e[0m..............Clear the screen"
     echo "  \e[0;34mquit\e[0m...............Quit program"
     echo ""
     echo "======================================================"
